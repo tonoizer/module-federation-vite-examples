@@ -8,12 +8,12 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 10
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         vite-version: [5, 6, 7]
-        command: [react:dev, react:preview]
     steps:
       - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
@@ -27,9 +27,32 @@ jobs:
         run: pnpm install --no-frozen-lockfile
       - name: Update Vite Version
         run: pnpm up -r vite@^${{ matrix.vite-version }}
+
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(pnpm ls @playwright/test --depth=0 --json | jq -r '.[0].devDependencies[\"@playwright/test\"].version')" >> $GITHUB_OUTPUT
+
+      - name: Cache playwright binaries
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
+
       - name: Install Playwright Browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: pnpm exec playwright install --with-deps
-      - name: Run Playwright tests
+
+      - name: Install Playwright OS dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm exec playwright install-deps
+
+      - name: Run Playwright tests (react:dev)
         run: pnpm exec playwright test
         env:
-          PLAYWRIGHT_TEST_COMMAND: pnpm ${{ matrix.command }}
+          PLAYWRIGHT_TEST_COMMAND: pnpm react:dev
+
+      - name: Run Playwright tests (react:preview)
+        run: pnpm exec playwright test
+        env:
+          PLAYWRIGHT_TEST_COMMAND: pnpm react:preview
