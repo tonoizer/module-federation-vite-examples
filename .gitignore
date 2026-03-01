@@ -25,3 +25,5 @@ dist-ssr
 
 .__mf__temp
 @mf-types
+playwright-report/*
+test-results/*
