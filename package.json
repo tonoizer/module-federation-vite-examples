@@ -3,11 +3,14 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
+    "prepare": "husky install",
+    "fmt": "oxfmt react vue",
+    "fmt.check": "oxfmt --check react vue",
     "react:dev": "pnpm -C react dev",
     "react:preview": "pnpm -C react preview",
     "vue:dev": "pnpm -C vue dev",
     "vue:preview": "pnpm -C vue preview",
-    "postinstall": "pnpm -C react build && pnpm -C vue build"
+    "postinstall": "pnpm -C react build"
   },
   "repository": {
     "type": "git",
@@ -24,6 +27,8 @@
   },
   "homepage": "https://github.com/gioboa/module-federation-vite-examples#readme",
   "devDependencies": {
-    "@playwright/test": "^1.58.2"
+    "@playwright/test": "^1.58.2",
+    "husky": "^8.0.3",
+    "oxfmt": "^0.35.0"
   }
 }
