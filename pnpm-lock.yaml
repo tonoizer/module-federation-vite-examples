@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     '@module-federation/vite':
-      specifier: https://pkg.pr.new/@module-federation/vite@425
-      version: 1.11.0
+      specifier: https://pkg.pr.new/@module-federation/vite@450
+      version: 1.12.1
 
 importers:
 
@@ -40,7 +40,7 @@ importers:
     devDependencies:
       '@module-federation/vite':
         specifier: 'catalog:'
-        version: https://pkg.pr.new/@module-federation/vite@425(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(lightningcss@1.31.1))(vue-tsc@1.8.27(typescript@5.9.3))
+        version: https://pkg.pr.new/@module-federation/vite@450(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(lightningcss@1.31.1))(vue-tsc@1.8.27(typescript@5.9.3))
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14
@@ -68,7 +68,7 @@ importers:
     devDependencies:
       '@module-federation/vite':
         specifier: 'catalog:'
-        version: https://pkg.pr.new/@module-federation/vite@425(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(lightningcss@1.31.1))(vue-tsc@1.8.27(typescript@5.9.3))
+        version: https://pkg.pr.new/@module-federation/vite@450(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(lightningcss@1.31.1))(vue-tsc@1.8.27(typescript@5.9.3))
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14
@@ -98,7 +98,7 @@ importers:
     devDependencies:
       '@module-federation/vite':
         specifier: 'catalog:'
-        version: https://pkg.pr.new/@module-federation/vite@425(rollup@4.59.0)(typescript@4.7.4)(vite@7.3.1(@types/node@18.19.130)(lightningcss@1.31.1))(vue-tsc@1.8.27(typescript@4.7.4))
+        version: https://pkg.pr.new/@module-federation/vite@450(rollup@4.59.0)(typescript@4.7.4)(vite@7.3.1(@types/node@18.19.130)(lightningcss@1.31.1))(vue-tsc@1.8.27(typescript@4.7.4))
       '@types/node':
         specifier: ^18.11.12
         version: 18.19.130
@@ -138,7 +138,7 @@ importers:
     devDependencies:
       '@module-federation/vite':
         specifier: 'catalog:'
-        version: https://pkg.pr.new/@module-federation/vite@425(rollup@4.59.0)(typescript@4.7.4)(vite@7.3.1(@types/node@18.19.130)(lightningcss@1.31.1))(vue-tsc@1.8.27(typescript@4.7.4))
+        version: https://pkg.pr.new/@module-federation/vite@450(rollup@4.59.0)(typescript@4.7.4)(vite@7.3.1(@types/node@18.19.130)(lightningcss@1.31.1))(vue-tsc@1.8.27(typescript@4.7.4))
       '@types/node':
         specifier: ^18.11.12
         version: 18.19.130
@@ -497,9 +497,9 @@ packages:
   '@module-federation/third-party-dts-extractor@2.0.1':
     resolution: {integrity: sha512-neKSr6FNUeGRh+YR57l/QZUzPytJXuJx+babF7j5iGJG3FP+kfizr6QD0hgVis5KEoXMVbQ8yyvG0slERizeyw==}
 
-  '@module-federation/vite@https://pkg.pr.new/@module-federation/vite@425':
-    resolution: {tarball: https://pkg.pr.new/@module-federation/vite@425}
-    version: 1.11.0
+  '@module-federation/vite@https://pkg.pr.new/@module-federation/vite@450':
+    resolution: {integrity: sha512-kBg8jwMsz4HsalTc5tN6cUlGJlxcSRe8KKbBltcSKIC3j1SZmAWnUh91aj+SiXv3Xo0ZOwoOqv7YXljTIVKvUg==, tarball: https://pkg.pr.new/@module-federation/vite@450}
+    version: 1.12.1
     peerDependencies:
       vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
 
@@ -1179,6 +1179,9 @@ packages:
   estree-walker@2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
 
+  estree-walker@3.0.3:
+    resolution: {integrity: sha512-7RUKfXgSMMkzt6ZuXmqapOurLGPPfgj6l9uRZ7lRGolvk0y2yocc35LdcxKC5PQZdn2DMqioAQ2NoWcrTKmm6g==}
+
   expand-tilde@2.0.2:
     resolution: {integrity: sha512-A5EmesHW6rfnZ9ysHQjPdJRni0SRar0tjtG5MNtm9n5TUvsYU8oozprtRD4AqHxcZWWlVuAmQo2nWKfN9oyjTw==}
     engines: {node: '>=0.10.0'}
@@ -1719,8 +1722,8 @@ packages:
     resolution: {integrity: sha512-T2ZUsdZFHgA3u4e5PfPbjd7HDDpxPnQb5jN0SrDsjNSuVXHJqtwTnWqG0B1jZrgmJ/7lj1EmVIByWt1gxGkWvg==}
     engines: {node: '>=4'}
 
-  pathe@1.1.2:
-    resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
+  pathe@2.0.3:
+    resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -2498,16 +2501,16 @@ snapshots:
       fs-extra: 9.1.0
       resolve: 1.22.8
 
-  '@module-federation/vite@https://pkg.pr.new/@module-federation/vite@425(rollup@4.59.0)(typescript@4.7.4)(vite@7.3.1(@types/node@18.19.130)(lightningcss@1.31.1))(vue-tsc@1.8.27(typescript@4.7.4))':
+  '@module-federation/vite@https://pkg.pr.new/@module-federation/vite@450(rollup@4.59.0)(typescript@4.7.4)(vite@7.3.1(@types/node@18.19.130)(lightningcss@1.31.1))(vue-tsc@1.8.27(typescript@4.7.4))':
     dependencies:
       '@module-federation/dts-plugin': 2.0.1(typescript@4.7.4)(vue-tsc@1.8.27(typescript@4.7.4))
       '@module-federation/runtime': 2.0.1
       '@module-federation/sdk': 2.0.1
       '@rollup/pluginutils': 5.3.0(rollup@4.59.0)
       defu: 6.1.4
-      estree-walker: 2.0.2
+      estree-walker: 3.0.3
       magic-string: 0.30.21
-      pathe: 1.1.2
+      pathe: 2.0.3
       vite: 7.3.1(@types/node@18.19.130)(lightningcss@1.31.1)
     transitivePeerDependencies:
       - bufferutil
@@ -2518,16 +2521,16 @@ snapshots:
       - utf-8-validate
       - vue-tsc
 
-  '@module-federation/vite@https://pkg.pr.new/@module-federation/vite@425(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(lightningcss@1.31.1))(vue-tsc@1.8.27(typescript@5.9.3))':
+  '@module-federation/vite@https://pkg.pr.new/@module-federation/vite@450(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(lightningcss@1.31.1))(vue-tsc@1.8.27(typescript@5.9.3))':
     dependencies:
       '@module-federation/dts-plugin': 2.0.1(typescript@5.9.3)(vue-tsc@1.8.27(typescript@5.9.3))
       '@module-federation/runtime': 2.0.1
       '@module-federation/sdk': 2.0.1
       '@rollup/pluginutils': 5.3.0(rollup@4.59.0)
       defu: 6.1.4
-      estree-walker: 2.0.2
+      estree-walker: 3.0.3
       magic-string: 0.30.21
-      pathe: 1.1.2
+      pathe: 2.0.3
       vite: 7.3.1(@types/node@18.19.130)(lightningcss@1.31.1)
     transitivePeerDependencies:
       - bufferutil
@@ -3226,6 +3229,10 @@ snapshots:
 
   estree-walker@2.0.2: {}
 
+  estree-walker@3.0.3:
+    dependencies:
+      '@types/estree': 1.0.8
+
   expand-tilde@2.0.2:
     dependencies:
       homedir-polyfill: 1.0.3
@@ -3777,7 +3784,7 @@ snapshots:
     dependencies:
       pify: 3.0.0
 
-  pathe@1.1.2: {}
+  pathe@2.0.3: {}
 
   picocolors@1.1.1: {}
 
