@@ -6,7 +6,6 @@ import { resolve } from "node:path";
 // In production/preview, remoteEntry.js is at the root (copied by the build hook below).
 const isDev = process.env.NODE_ENV !== "production";
 const remoteBase = isDev ? "/_nuxt" : "";
-console.log("[MF] isDev:", isDev, "remoteBase:", remoteBase);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({

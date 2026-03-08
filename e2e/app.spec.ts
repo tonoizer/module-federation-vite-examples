@@ -20,6 +20,8 @@ test("react host app and remote component should load and be visible", async ({
 test("remoteEntry.js should be accessible at the correct path", async ({
   request,
 }) => {
+  const isNuxt = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("nuxt");
+  test.skip(!isNuxt, "only applies to nuxt");
   // In production/preview, remoteEntry.js should be served at the root (no /_nuxt prefix)
   const response = await request.get("http://localhost:4174/remoteEntry.js");
   expect(response.ok()).toBe(true);
