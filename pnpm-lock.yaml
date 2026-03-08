@@ -7,7 +7,7 @@ settings:
 catalogs:
   default:
     '@module-federation/vite':
-      specifier: 1.12.1
+      specifier: https://pkg.pr.new/@module-federation/vite@452
       version: 1.12.1
 
 importers:
@@ -29,8 +29,8 @@ importers:
   nuxt/host:
     dependencies:
       '@module-federation/vite':
-        specifier: ../../../vite
-        version: link:../../../vite
+        specifier: 'catalog:'
+        version: https://pkg.pr.new/@module-federation/vite@452(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@5.9.3))
       '@pinia/nuxt':
         specifier: ^0.11.3
         version: 0.11.3(magicast@0.5.2)(pinia@2.3.1(typescript@5.9.3)(vue@3.5.29(typescript@5.9.3)))
@@ -47,8 +47,8 @@ importers:
   nuxt/remote:
     dependencies:
       '@module-federation/vite':
-        specifier: ../../../vite
-        version: link:../../../vite
+        specifier: 'catalog:'
+        version: https://pkg.pr.new/@module-federation/vite@452(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@5.9.3))
       '@pinia/nuxt':
         specifier: ^0.11.3
         version: 0.11.3(magicast@0.5.2)(pinia@2.3.1(typescript@5.9.3)(vue@3.5.29(typescript@5.9.3)))
@@ -78,7 +78,7 @@ importers:
     devDependencies:
       '@module-federation/vite':
         specifier: 'catalog:'
-        version: 1.12.1(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@5.9.3))
+        version: https://pkg.pr.new/@module-federation/vite@452(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@5.9.3))
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14
@@ -106,7 +106,7 @@ importers:
     devDependencies:
       '@module-federation/vite':
         specifier: 'catalog:'
-        version: 1.12.1(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@5.9.3))
+        version: https://pkg.pr.new/@module-federation/vite@452(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@5.9.3))
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14
@@ -128,8 +128,8 @@ importers:
   svelte/host:
     dependencies:
       '@module-federation/vite':
-        specifier: ^1.12.1
-        version: 1.12.1(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@5.9.3))
+        specifier: 'catalog:'
+        version: https://pkg.pr.new/@module-federation/vite@452(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@5.9.3))
       '@sveltejs/adapter-static':
         specifier: ^3.0.10
         version: 3.0.10(@sveltejs/kit@2.53.4(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.7)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2)))(svelte@5.53.7)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2)))
@@ -168,8 +168,8 @@ importers:
   svelte/remote:
     dependencies:
       '@module-federation/vite':
-        specifier: ^1.12.1
-        version: 1.12.1(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@5.9.3))
+        specifier: 'catalog:'
+        version: https://pkg.pr.new/@module-federation/vite@452(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@5.9.3))
       '@sveltejs/adapter-static':
         specifier: ^3.0.10
         version: 3.0.10(@sveltejs/kit@2.53.4(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.7)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2)))(svelte@5.53.7)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2)))
@@ -218,7 +218,7 @@ importers:
     devDependencies:
       '@module-federation/vite':
         specifier: 'catalog:'
-        version: 1.12.1(rollup@4.59.0)(typescript@4.7.4)(vite@7.3.1(@types/node@18.19.130)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@4.7.4))
+        version: https://pkg.pr.new/@module-federation/vite@452(rollup@4.59.0)(typescript@4.7.4)(vite@7.3.1(@types/node@18.19.130)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@4.7.4))
       '@types/node':
         specifier: ^18.11.12
         version: 18.19.130
@@ -258,7 +258,7 @@ importers:
     devDependencies:
       '@module-federation/vite':
         specifier: 'catalog:'
-        version: 1.12.1(rollup@4.59.0)(typescript@4.7.4)(vite@7.3.1(@types/node@18.19.130)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@4.7.4))
+        version: https://pkg.pr.new/@module-federation/vite@452(rollup@4.59.0)(typescript@4.7.4)(vite@7.3.1(@types/node@18.19.130)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@4.7.4))
       '@types/node':
         specifier: ^18.11.12
         version: 18.19.130
@@ -682,8 +682,9 @@ packages:
   '@module-federation/third-party-dts-extractor@2.0.1':
     resolution: {integrity: sha512-neKSr6FNUeGRh+YR57l/QZUzPytJXuJx+babF7j5iGJG3FP+kfizr6QD0hgVis5KEoXMVbQ8yyvG0slERizeyw==}
 
-  '@module-federation/vite@1.12.1':
-    resolution: {integrity: sha512-uKbXy5jXdINU5+Evaf3WsJ/c1HUzzd3quLf+9Chyt2BWWjVpAvK+j/yoQAaV4Qr43f7DlLLobT7nxRpthEQigg==}
+  '@module-federation/vite@https://pkg.pr.new/@module-federation/vite@452':
+    resolution: {integrity: sha512-t9LavVlZySyTpfSlrRt89z2JAz0otaU7wRA2SVj/wESfZZeuZqURj8SFaVFKo+v+LHKhd/XOIKlFwToSbKyU8w==, tarball: https://pkg.pr.new/@module-federation/vite@452}
+    version: 1.12.1
     peerDependencies:
       vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
 
@@ -5386,7 +5387,7 @@ snapshots:
       fs-extra: 9.1.0
       resolve: 1.22.8
 
-  '@module-federation/vite@1.12.1(rollup@4.59.0)(typescript@4.7.4)(vite@7.3.1(@types/node@18.19.130)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@4.7.4))':
+  '@module-federation/vite@https://pkg.pr.new/@module-federation/vite@452(rollup@4.59.0)(typescript@4.7.4)(vite@7.3.1(@types/node@18.19.130)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@4.7.4))':
     dependencies:
       '@module-federation/dts-plugin': 2.0.1(typescript@4.7.4)(vue-tsc@1.8.27(typescript@4.7.4))
       '@module-federation/runtime': 2.0.1
@@ -5406,7 +5407,7 @@ snapshots:
       - utf-8-validate
       - vue-tsc
 
-  '@module-federation/vite@1.12.1(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@5.9.3))':
+  '@module-federation/vite@https://pkg.pr.new/@module-federation/vite@452(rollup@4.59.0)(typescript@5.9.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@1.8.27(typescript@5.9.3))':
     dependencies:
       '@module-federation/dts-plugin': 2.0.1(typescript@5.9.3)(vue-tsc@1.8.27(typescript@5.9.3))
       '@module-federation/runtime': 2.0.1

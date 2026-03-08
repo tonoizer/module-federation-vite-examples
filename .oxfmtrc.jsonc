@@ -6,5 +6,10 @@
   "singleQuote": false,
   "tabWidth": 2,
   "endOfLine": "lf",
-  "ignorePatterns": [".env*", "**/.__mf__temp/**"],
+  "ignorePatterns": [
+    ".env*",
+    "**/.__mf__temp/**",
+    "**/.svelte-kit/**",
+    "**/.nuxt/**",
+  ],
 }
