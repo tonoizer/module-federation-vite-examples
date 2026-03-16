@@ -10,6 +10,7 @@ A collection of Module Federation examples built with Vite, used to test new [@m
 | ---------------------- | --------------- | ----------------- | --------------------------- |
 | [Nuxt](./nuxt)         | `nuxt-host`     | `nuxt-remote`     | Nuxt 4                      |
 | [React](./react)       | `react-host`    | `react-remote`    | React 19                    |
+| [Solid](./solid)       | `solid-host`    | `solid-remote`    | Solid                       |
 | [Svelte](./svelte)     | `svelte-host`   | `svelte-remote`   | Svelte 5                    |
 | [TanStack](./tanstack) | `tanstack-host` | `tanstack-remote` | TanStack Router + React 19  |
 | [Vinext](./vinext)     | `vinext-host`   | `vinext-remote`   | Vinext + Next 16 + React 19 |
@@ -31,6 +32,7 @@ pnpm install
 
 # Run examples
 pnpm react:dev
+pnpm solid:dev
 pnpm vue:dev
 pnpm svelte:dev
 pnpm tanstack:dev
