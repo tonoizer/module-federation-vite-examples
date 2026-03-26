@@ -15,4 +15,4 @@ packages:
   - "vue/*"
 
 catalog:
-  "@module-federation/vite": "https://pkg.pr.new/@module-federation/vite@cb269bd"
+  "@module-federation/vite": "https://pkg.pr.new/@module-federation/vite@555"
