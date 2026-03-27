@@ -1,11 +1,5 @@
 import { CommonModule } from "@angular/common";
-import {
-  AfterViewInit,
-  Component,
-  EnvironmentInjector,
-  viewChild,
-  ViewContainerRef,
-} from "@angular/core";
+import { Component, effect, viewChild, ViewContainerRef } from "@angular/core";
 import { CounterComponent } from "./counter.component";
 
 @Component({
@@ -38,37 +32,13 @@ import { CounterComponent } from "./counter.component";
   `,
   imports: [CommonModule, CounterComponent],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
   viewContainer = viewChild("remote_app", { read: ViewContainerRef });
 
-  constructor(private environmentInjector: EnvironmentInjector) {}
-
-  async ngAfterViewInit() {
-    const viewContainer = this.viewContainer();
-
-    if (!viewContainer) {
-      return;
-    }
-
-    const m = await this.loadRemoteComponent();
-    viewContainer.clear();
-    viewContainer.createComponent(m.AppComponent, {
-      environmentInjector: this.environmentInjector,
+  constructor() {
+    effect(async () => {
+      const m = await import("remote/remote-app");
+      this.viewContainer()?.createComponent(m.AppComponent);
     });
-  }
-
-  private async loadRemoteComponent() {
-    let lastError: unknown;
-
-    for (let attempt = 0; attempt < 20; attempt++) {
-      try {
-        return await import("remote/remote-app");
-      } catch (error) {
-        lastError = error;
-        await new Promise((resolve) => setTimeout(resolve, 500));
-      }
-    }
-
-    throw lastError;
   }
 }

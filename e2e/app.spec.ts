@@ -1,5 +1,23 @@
 import { expect, test } from "@playwright/test";
 
+test.beforeEach(async ({ page }, testInfo) => {
+  page.on("console", (message) => {
+    if (message.type() === "error") {
+      testInfo.attach("page-console-error", {
+        contentType: "text/plain",
+        body: `[${message.type()}] ${message.text()}`,
+      });
+    }
+  });
+
+  page.on("pageerror", (error) => {
+    testInfo.attach("page-error", {
+      contentType: "text/plain",
+      body: `${error.name}: ${error.message}\n${error.stack}`,
+    });
+  });
+});
+
 const isSharedState =
   process.env.PLAYWRIGHT_TEST_COMMAND?.includes("vue") ||
   process.env.PLAYWRIGHT_TEST_COMMAND?.includes("nuxt");
