@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, EnvironmentInjector, effect, viewChild, ViewContainerRef } from "@angular/core";
+import { Component, effect, viewChild, ViewContainerRef } from "@angular/core";
 import { CounterComponent } from "./counter.component";
 
 @Component({
@@ -34,15 +34,11 @@ import { CounterComponent } from "./counter.component";
 })
 export class AppComponent {
   viewContainer = viewChild("remote_app", { read: ViewContainerRef });
-  constructor(private environmentInjector: EnvironmentInjector) {
-    effect(async () => {
-      const container = this.viewContainer();
-      if (!container) return;
 
-      const remote = await import("remote/remote-app");
-      container.createComponent(remote.AppComponent, {
-        environmentInjector: this.environmentInjector,
-      });
+  constructor() {
+    effect(async () => {
+      const m = await import("remote/remote-app");
+      this.viewContainer()?.createComponent(m.AppComponent);
     });
   }
 }
