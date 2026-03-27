@@ -2,10 +2,10 @@
   "name": "svelte-host",
   "type": "module",
   "scripts": {
+    "predev": "svelte-kit sync || echo ''",
     "dev": "vite dev --port 4173",
     "build": "vite build",
     "preview": "npx serve build -l 4173 --cors",
-    "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },

@@ -3,10 +3,10 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "predev": "nuxt prepare",
     "dev": "nuxt dev --port 4173",
     "generate": "nuxt generate",
-    "preview": "nuxt preview --port 4173",
-    "postinstall": "nuxt prepare"
+    "preview": "nuxt preview --port 4173"
   },
   "dependencies": {
     "@module-federation/vite": "catalog:",
