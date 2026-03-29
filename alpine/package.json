@@ -1,0 +1,9 @@
+{
+  "name": "alpine",
+  "description": "Module Federation Vite + Alpine.js is now possible",
+  "scripts": {
+    "dev": "pnpm --filter alpine-* dev",
+    "build": "pnpm --filter alpine-* build",
+    "preview": "pnpm --filter alpine-* preview"
+  }
+}

@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.remote .card {
+  background: #1f2124;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  margin: 20px 20px 20px 20px;
+  width: 250px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  float: left;
+}
+
+.remote .title {
+  margin-top: 10px;
+  font-size: 25px;
+}
+
+.remote svg {
+  width: 100px;
+  height: 100px;
+}
+
+.counter {
+  border: 0 solid #e2e8f0;
+  margin-top: 10px;
+  background-color: rgb(246, 179, 82);
+  border-radius: 0.25rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  color: rgb(24, 24, 24);
+  cursor: pointer;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 11px;
+  border-radius: 999px;
+  margin-top: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(8px);
+}
