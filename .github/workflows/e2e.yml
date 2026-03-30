@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        framework: [alpine, angular, nuxt, react, solid, svelte, tanstack, vinext, vue]
+        framework: [alpine, angular, lit, nuxt, react, solid, svelte, tanstack, vinext, vue]
     steps:
       - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
