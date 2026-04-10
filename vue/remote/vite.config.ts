@@ -34,6 +34,7 @@ export default defineConfig(async ({ command, mode }) => {
         name: "remote",
         exposes: {
           "./remote-app": "./src/App.vue",
+          "./format-utils": "./src/utils/format.ts",
         },
         remotes: {},
       }),

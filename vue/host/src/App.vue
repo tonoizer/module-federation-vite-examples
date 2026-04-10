@@ -1,6 +1,14 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, onMounted, ref } from "vue";
 import Counter from "./components/Counter.vue";
+
+const formattedPrice = ref("");
+
+onMounted(async () => {
+  const { formatPrice } = await import("remote/format-utils");
+  formattedPrice.value = formatPrice(1234.56, "EUR");
+});
+
 const RemoteMFE = defineAsyncComponent(
   // @ts-ignore
   () => import("remote/remote-app")
@@ -30,6 +38,7 @@ const RemoteMFE = defineAsyncComponent(
         </svg>
       </div>
       <div class="title">I'm the host app</div>
+      <p>Price: {{ formattedPrice }}</p>
       <Counter />
     </div>
   </div>

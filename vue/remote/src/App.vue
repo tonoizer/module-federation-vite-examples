@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { state } from "shared";
 import Counter from "./components/Counter.vue";
-import enviroment from "./enviroment";
 import image from "./remote_assets/logo.svg";
+import { formatPrice } from "@/utils/format";
 console.log("remote got message:", state.message);
-// console.info("vite import.meta got message:", enviroment.VITE_EXAMPLE);
 </script>
 
 <template>
@@ -26,6 +25,7 @@ console.log("remote got message:", state.message);
       <img width="100" height="100" :src="image" alt="" />
     </div>
     <div style="margin-top: 10px; font-size: 25px">I'm the remote app</div>
+    <p>Price: {{ formatPrice(54321, "USD") }}</p>
     <Counter />
   </div>
 </template>
