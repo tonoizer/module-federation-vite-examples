@@ -1,5 +1,5 @@
 import { federation } from "@module-federation/vite";
-import { defineConfig } from "vite";
+import { defineConfig, type PluginOption } from "vite";
 import { dependencies } from "./package.json";
 
 export default defineConfig(() => ({
@@ -22,11 +22,9 @@ export default defineConfig(() => ({
       exposes: {},
       filename: "remoteEntry.js",
       shared: {
-        lit: {
-          requiredVersion: dependencies.lit,
-          singleton: true,
-        },
+        lit: { requiredVersion: dependencies.lit, singleton: true },
+        "lit-html": { singleton: true },
       },
-    }),
+    }) as unknown as PluginOption,
   ],
 }));
