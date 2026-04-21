@@ -47,7 +47,7 @@ jobs:
         if: matrix.framework != 'nuxt'
         uses: ./.github/actions/test-vite
         with:
-          vite-version: "7"
+          vite-version: "7.3.2"
           framework: ${{ matrix.framework }}
 
       - name: Test vite 8

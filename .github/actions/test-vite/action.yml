@@ -17,7 +17,7 @@ runs:
       if: inputs.vite-version != ''
       shell: bash
       run: |
-        pnpm up -r vite@^${{ inputs.vite-version }}
+        pnpm up -r vite@${{ inputs.vite-version }}
 
     - name: Test dev
       if: inputs.framework != 'nuxt'
