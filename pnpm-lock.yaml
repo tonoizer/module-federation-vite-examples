@@ -1619,7 +1619,7 @@ packages:
     resolution: {integrity: sha512-rR94TjC1QVQLQPTazI0waLc76hI8dnv6aHTl+PUEIY9s5hXp8TA85XS0QJQqIf2KTjlPgZbWAwyFjOAJluTjaw==}
 
   '@module-federation/vite@https://pkg.pr.new/@module-federation/vite@636':
-    resolution: {integrity: sha512-X3gKjf8TH0Q4KP7quePtT/lbj0kbWtvzPwuqAIKe2P3fnz2LqRXWFMqQdr+gNIwHv11qXy7G471aab4CACmgaA==, tarball: https://pkg.pr.new/@module-federation/vite@636}
+    resolution: {tarball: https://pkg.pr.new/@module-federation/vite@636}
     version: 1.14.5
     peerDependencies:
       vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
