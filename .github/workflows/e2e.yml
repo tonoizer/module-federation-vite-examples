@@ -44,14 +44,14 @@ jobs:
         run: pnpm install --no-frozen-lockfile --prefer-offline
 
       - name: Test vite 7
-        if: matrix.framework != 'nuxt'
+        if: matrix.framework != 'nuxt' && matrix.framework != 'svelte'
         uses: ./.github/actions/test-vite
         with:
           vite-version: "7"
           framework: ${{ matrix.framework }}
 
       - name: Test vite 8
-        if: matrix.framework != 'angular' && matrix.framework != 'nuxt' && matrix.framework != 'svelte'
+        if: matrix.framework != 'angular'
         uses: ./.github/actions/test-vite
         with:
           vite-version: "8"
