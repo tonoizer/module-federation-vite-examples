@@ -13,6 +13,16 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Set report labels
+      id: report-labels
+      shell: bash
+      run: |
+        vite_label="${{ inputs.vite-version }}"
+        if [ -z "$vite_label" ]; then
+          vite_label="current"
+        fi
+        echo "vite-label=$vite_label" >> "$GITHUB_OUTPUT"
+
     - name: Update to vite ${{ inputs.vite-version }}
       if: inputs.vite-version != ''
       shell: bash
@@ -20,19 +30,43 @@ runs:
         pnpm up -r vite@^${{ inputs.vite-version }}
 
     - name: Test dev
+      id: test-dev
       if: inputs.framework != 'nuxt'
       shell: bash
       run: pnpm exec playwright test
       env:
         PLAYWRIGHT_TEST_COMMAND: pnpm ${{ inputs.framework }}:dev
+        PLAYWRIGHT_REPORT_DIR: artifacts/playwright/${{ inputs.framework }}/vite-${{ steps.report-labels.outputs.vite-label }}/dev/report
+        PLAYWRIGHT_TEST_RESULTS_DIR: artifacts/playwright/${{ inputs.framework }}/vite-${{ steps.report-labels.outputs.vite-label }}/dev/test-results
+
+    - name: Upload dev test artifacts
+      if: failure() && steps.test-dev.outcome == 'failure'
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-${{ inputs.framework }}-vite-${{ steps.report-labels.outputs.vite-label }}-dev
+        path: artifacts/playwright/${{ inputs.framework }}/vite-${{ steps.report-labels.outputs.vite-label }}/dev
+        if-no-files-found: ignore
+        retention-days: 7
 
     - name: Test build
       shell: bash
       run: cd ${{ inputs.framework }} && pnpm build
 
     - name: Test preview
+      id: test-preview
       if: inputs.framework != 'svelte'
       shell: bash
       run: pnpm exec playwright test
       env:
         PLAYWRIGHT_TEST_COMMAND: pnpm ${{ inputs.framework }}:preview
+        PLAYWRIGHT_REPORT_DIR: artifacts/playwright/${{ inputs.framework }}/vite-${{ steps.report-labels.outputs.vite-label }}/preview/report
+        PLAYWRIGHT_TEST_RESULTS_DIR: artifacts/playwright/${{ inputs.framework }}/vite-${{ steps.report-labels.outputs.vite-label }}/preview/test-results
+
+    - name: Upload preview test artifacts
+      if: failure() && steps.test-preview.outcome == 'failure'
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-${{ inputs.framework }}-vite-${{ steps.report-labels.outputs.vite-label }}-preview
+        path: artifacts/playwright/${{ inputs.framework }}/vite-${{ steps.report-labels.outputs.vite-label }}/preview
+        if-no-files-found: ignore
+        retention-days: 7

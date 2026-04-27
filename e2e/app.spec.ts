@@ -24,28 +24,7 @@ const isSharedState =
 
 const btn = (page: any, name: RegExp) => page.getByRole("button", { name }).first();
 
-const waitForRemote = async () => {
-  const url = "http://localhost:4174/remoteEntry.js";
-  const deadline = Date.now() + 30000;
-  let lastError: unknown;
-
-  while (Date.now() < deadline) {
-    try {
-      const response = await fetch(url, { cache: "no-store" });
-      if (response.ok) return;
-      lastError = new Error(`${response.status} ${response.statusText}`);
-    } catch (error) {
-      lastError = error;
-    }
-
-    await new Promise((resolve) => setTimeout(resolve, 250));
-  }
-
-  throw new Error(`Remote did not become ready at ${url}: ${String(lastError)}`);
-};
-
 test("host app and remote component should load and counters should work", async ({ page }) => {
-  await waitForRemote();
   await page.goto("/");
 
   // Verify the Host and Remote apps loaded
