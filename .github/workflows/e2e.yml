@@ -20,11 +20,6 @@ jobs:
       fail-fast: false
       matrix:
         framework: [alpine, angular, lit, nuxt, preact, react, solid, svelte, tanstack, vinext, vue]
-        spec: ["e2e/app.spec.ts"]
-        include:
-          - framework: tanstack-ssr
-            spec: e2e/ssr/ssr.spec.ts
-            webserver-url: http://localhost:4174
     steps:
       - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
@@ -49,13 +44,11 @@ jobs:
         run: pnpm install --no-frozen-lockfile --prefer-offline
 
       - name: Test vite 7
-        if: matrix.framework != 'nuxt' && matrix.framework != 'tanstack' && matrix.framework != 'tanstack-ssr' && matrix.framework != 'react'
+        if: matrix.framework != 'nuxt' && matrix.framework != 'tanstack' && matrix.framework != 'react'
         uses: ./.github/actions/test-vite
         with:
           vite-version: "7"
           framework: ${{ matrix.framework }}
-          spec: ${{ matrix.spec }}
-          webserver-url: ${{ matrix.webserver-url }}
 
       - name: Test vite 8
         if: matrix.framework != 'angular'
@@ -63,12 +56,9 @@ jobs:
         with:
           vite-version: "8"
           framework: ${{ matrix.framework }}
-          spec: ${{ matrix.spec }}
-          webserver-url: ${{ matrix.webserver-url }}
 
       - name: Test nuxt
         if: matrix.framework == 'nuxt'
         uses: ./.github/actions/test-vite
         with:
           framework: nuxt
-          spec: ${{ matrix.spec }}

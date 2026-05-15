@@ -11,18 +11,18 @@
     "@tanstack/react-router": "1.168.10",
     "@tanstack/react-start": "1.167.16",
     "@tanstack/start-plugin-core": "1.167.17",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "tanstack-ssr-shared": "workspace:*",
-    "vinxi": "^0.5.3"
+    "vinxi": "0.5.3"
   },
   "devDependencies": {
-    "@module-federation/vite": "https://pkg.pr.new/@module-federation/vite@b108a3f",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "@vitejs/plugin-react": "^4.4.1",
-    "nitro": "^3.0.260311-beta",
+    "@module-federation/vite": "catalog:",
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "@vitejs/plugin-react": "4.4.1",
+    "nitro": "3.0.260311-beta",
     "typescript": "5.9.3",
-    "vite": "^8.0.0"
+    "vite": "8.0.0"
   }
 }

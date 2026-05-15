@@ -1,10 +1,9 @@
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "tanstack-ssr-shared";
 
 export default function Counter() {
   const [count, setCount] = useState(0);
   const [hydrated, setHydrated] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
   const theme = useTheme();
 
   useEffect(() => {
@@ -14,50 +13,76 @@ export default function Counter() {
   return (
     <div
       style={{
-        border: `2px solid ${theme.primaryColour}`,
-        borderRadius: 8,
-        padding: 24,
-        maxWidth: 320,
+        background: "#1f2124",
+        boxShadow: "0 0 20px rgba(0, 0, 0, 0.4)",
+        borderRadius: 5,
+        color: "white",
+        margin: 20,
+        padding: 20,
+        textAlign: "center",
+        width: 250,
       }}
     >
-      <h2 style={{ margin: "0 0 8px", color: theme.primaryColour }}>Remote counter</h2>
-      <p style={{ margin: "0 0 16px", fontSize: 12, color: "#999" }}>
-        Theme from host context: <strong>{theme.label}</strong> ({theme.primaryColour})
-      </p>
-      <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
-        <input
-          ref={inputRef}
-          type="number"
-          value={count}
-          onChange={(e) => setCount(Number(e.target.value))}
-          style={{ width: 80, padding: "4px 8px" }}
-        />
-        <button
-          onClick={() => setCount((c) => c + 1)}
-          style={{ padding: "4px 12px", cursor: "pointer" }}
-        >
-          +1
-        </button>
-        <button
-          onClick={() => inputRef.current?.focus()}
-          style={{ padding: "4px 12px", cursor: "pointer" }}
-        >
-          Focus
-        </button>
-      </div>
-      <span
+      <div style={{ marginTop: 10, fontSize: 21 }}>Remote SSR component</div>
+      <p
         style={{
-          display: "inline-block",
-          padding: "2px 8px",
-          borderRadius: 4,
-          fontSize: 11,
-          fontWeight: 600,
-          background: hydrated ? "#e6f4ea" : "#f5f5f5",
-          color: hydrated ? "#1e7e34" : "#999",
-          border: `1px solid ${hydrated ? "#a8d5b5" : "#ddd"}`,
+          margin: "10px 0 16px",
+          fontSize: 12,
+          color: "rgba(255, 255, 255, 0.82)",
         }}
       >
-        {hydrated ? "hydrated" : "ssr"}
+        Rendered by remote before client hydration.
+      </p>
+      <p style={{ margin: "10px 0 16px", fontSize: 12, color: "#c9cdd3" }}>
+        Theme from host context: <strong>{theme.label}</strong> ({theme.primaryColour})
+      </p>
+      {hydrated && (
+        <button
+          onClick={() => setCount((c) => c + 1)}
+          style={{
+            backgroundColor: "rgb(246, 179, 82)",
+            border: "0 solid #e2e8f0",
+            borderRadius: 4,
+            color: "rgb(24, 24, 24)",
+            cursor: "pointer",
+            display: "block",
+            fontWeight: 700,
+            margin: "0 auto 12px",
+            padding: "8px 16px",
+          }}
+        >
+          Remote counter: {count}
+        </button>
+      )}
+      <span
+        style={{
+          alignItems: "center",
+          background: hydrated
+            ? "linear-gradient(135deg, rgba(156, 224, 170, 0.2), rgba(246, 179, 82, 0.12))"
+            : "rgba(255, 255, 255, 0.08)",
+          borderRadius: 999,
+          boxShadow: hydrated ? "inset 0 0 0 1px rgba(156, 224, 170, 0.18)" : "none",
+          color: hydrated ? "#9ce0aa" : "#aeb4bc",
+          display: "inline-flex",
+          fontSize: 12,
+          fontWeight: 700,
+          gap: 7,
+          letterSpacing: 0,
+          lineHeight: 1,
+          padding: "7px 11px",
+        }}
+      >
+        <span
+          style={{
+            background: hydrated ? "#9ce0aa" : "#aeb4bc",
+            borderRadius: "50%",
+            boxShadow: hydrated ? "0 0 8px rgba(156, 224, 170, 0.75)" : "none",
+            display: "inline-block",
+            height: 7,
+            width: 7,
+          }}
+        />
+        {hydrated ? "Hydrated" : "SSR"}
       </span>
     </div>
   );

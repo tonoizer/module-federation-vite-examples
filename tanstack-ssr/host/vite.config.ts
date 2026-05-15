@@ -1,8 +1,8 @@
-import { defineConfig } from "vite";
+import { federation } from "@module-federation/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
-import { federation } from "@module-federation/vite";
 import { nitro } from "nitro/vite";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   nitro: {
@@ -20,6 +20,7 @@ export default defineConfig({
   },
   plugins: [
     federation({
+      dts: false,
       name: "host",
       hostInitInjectLocation: "entry",
       remotes: {

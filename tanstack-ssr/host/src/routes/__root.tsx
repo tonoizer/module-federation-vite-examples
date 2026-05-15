@@ -13,6 +13,7 @@ export const Route = createRootRoute({
     ],
   }),
   component: RootComponent,
+  notFoundComponent: NotFoundComponent,
 });
 
 function RootComponent() {
@@ -29,4 +30,8 @@ function RootComponent() {
       </body>
     </html>
   );
+}
+
+function NotFoundComponent() {
+  return <p>Not Found</p>;
 }
