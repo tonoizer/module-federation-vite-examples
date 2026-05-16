@@ -21,58 +21,115 @@ test.beforeEach(async ({ page }, testInfo) => {
 const isSharedState =
   process.env.PLAYWRIGHT_TEST_COMMAND?.includes("vue") ||
   process.env.PLAYWRIGHT_TEST_COMMAND?.includes("nuxt");
+const isTanStackSsr = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("tanstack-ssr");
 
 const btn = (page: any, name: RegExp) => page.getByRole("button", { name }).first();
 
-test("host app and remote component should load and counters should work", async ({ page }) => {
-  await page.goto("/");
+test.describe("standard examples", () => {
+  test.skip(isTanStackSsr, "tanstack-ssr has SSR-specific coverage");
 
-  // Verify the Host and Remote apps loaded
-  await expect(page.getByText("I'm the host app")).toBeVisible({
-    timeout: 10000,
+  test("host app and remote component should load and counters should work", async ({ page }) => {
+    await page.goto("/");
+
+    // Verify the Host and Remote apps loaded
+    await expect(page.getByText("I'm the host app")).toBeVisible({
+      timeout: 10000,
+    });
+    await expect(page.getByText("I'm the remote app").first()).toBeVisible({
+      timeout: 10000,
+    });
+
+    // Verify counters start at 0
+    await expect(btn(page, /Host counter: 0/)).toBeVisible({ timeout: 10000 });
+    await expect(btn(page, /Remote counter: 0/)).toBeVisible({ timeout: 10000 });
+
+    // Click host counter and verify it increments
+    await btn(page, /Host counter: 0/).click();
+    await expect(btn(page, /Host counter: 1/)).toBeVisible();
+
+    if (isSharedState) {
+      // Vue/Nuxt shares state via Pinia - remote should also be 1
+      await expect(btn(page, /Remote counter: 1/)).toBeVisible();
+    }
+
+    // Click remote counter
+    await btn(page, isSharedState ? /Remote counter: 1/ : /Remote counter: 0/).click();
+    await expect(
+      btn(page, isSharedState ? /Remote counter: 2/ : /Remote counter: 1/)
+    ).toBeVisible();
+
+    if (isSharedState) {
+      // Vue/Nuxt shared state - host should also be 2
+      await expect(btn(page, /Host counter: 2/)).toBeVisible();
+    }
+
+    // Click host counter again
+    await btn(page, isSharedState ? /Host counter: 2/ : /Host counter: 1/).click();
+    await expect(btn(page, isSharedState ? /Host counter: 3/ : /Host counter: 2/)).toBeVisible();
+
+    if (isSharedState) {
+      // Vue/Nuxt shared state - remote should also be 3
+      await expect(btn(page, /Remote counter: 3/)).toBeVisible();
+    } else {
+      // Independent state - remote should still be 1
+      await expect(btn(page, /Remote counter: 1/)).toBeVisible();
+
+      // Click remote again and verify independent increment
+      await btn(page, /Remote counter: 1/).click();
+      await expect(btn(page, /Remote counter: 2/)).toBeVisible();
+
+      // Host still at 2
+      await expect(btn(page, /Host counter: 2/)).toBeVisible();
+    }
   });
-  await expect(page.getByText("I'm the remote app").first()).toBeVisible({
-    timeout: 10000,
+});
+
+test.describe("tanstack-ssr", () => {
+  test.skip(!isTanStackSsr, "tanstack-ssr only");
+
+  test("host app and remote components should be server-rendered", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(page.getByText("I'm the host app")).toBeVisible({ timeout: 10000 });
+    await expect(page.getByText("I'm the remote app").first()).toBeVisible({ timeout: 10000 });
+    await expect(page.getByText("Remote counter").first()).toBeVisible({ timeout: 10000 });
   });
 
-  // Verify counters start at 0
-  await expect(btn(page, /Host counter: 0/)).toBeVisible({ timeout: 10000 });
-  await expect(btn(page, /Remote counter: 0/)).toBeVisible({ timeout: 10000 });
+  test("remote counter should be interactive after hydration", async ({ page }) => {
+    await page.goto("/");
 
-  // Click host counter and verify it increments
-  await btn(page, /Host counter: 0/).click();
-  await expect(btn(page, /Host counter: 1/)).toBeVisible();
+    // Wait for the hydration badge span (not the <code> in the description text)
+    // to ensure React has attached event handlers before clicking.
+    await expect(page.locator("span", { hasText: "hydrated" }).first()).toBeVisible({
+      timeout: 10000,
+    });
 
-  if (isSharedState) {
-    // Vue/Nuxt shares state via Pinia - remote should also be 1
-    await expect(btn(page, /Remote counter: 1/)).toBeVisible();
-  }
+    // Re-resolve locator after hydration to avoid stale element references.
+    await page
+      .getByRole("button", { name: /Remote counter: 0/ })
+      .first()
+      .click();
+    await expect(page.getByRole("button", { name: /Remote counter: 1/ }).first()).toBeVisible({
+      timeout: 10000,
+    });
+  });
 
-  // Click remote counter
-  await btn(page, isSharedState ? /Remote counter: 1/ : /Remote counter: 0/).click();
-  await expect(btn(page, isSharedState ? /Remote counter: 2/ : /Remote counter: 1/)).toBeVisible();
+  test("shared context singleton should cross the MF boundary", async ({ page }) => {
+    await page.goto("/");
 
-  if (isSharedState) {
-    // Vue/Nuxt shared state - host should also be 2
-    await expect(btn(page, /Host counter: 2/)).toBeVisible();
-  }
+    // Remote components display the theme label provided by the host.
+    // If the React singleton is not shared, they'd show 'default' instead.
+    await expect(page.getByText(/Theme from host context:/).first()).toBeVisible({
+      timeout: 10000,
+    });
+    const themeLabels = page.getByText("host");
+    await expect(themeLabels.first()).toBeVisible({ timeout: 10000 });
+  });
 
-  // Click host counter again
-  await btn(page, isSharedState ? /Host counter: 2/ : /Host counter: 1/).click();
-  await expect(btn(page, isSharedState ? /Host counter: 3/ : /Host counter: 2/)).toBeVisible();
+  test("hydration badge should update after client-side hydration", async ({ page }) => {
+    await page.goto("/");
 
-  if (isSharedState) {
-    // Vue/Nuxt shared state - remote should also be 3
-    await expect(btn(page, /Remote counter: 3/)).toBeVisible();
-  } else {
-    // Independent state - remote should still be 1
-    await expect(btn(page, /Remote counter: 1/)).toBeVisible();
-
-    // Click remote again and verify independent increment
-    await btn(page, /Remote counter: 1/).click();
-    await expect(btn(page, /Remote counter: 2/)).toBeVisible();
-
-    // Host still at 2
-    await expect(btn(page, /Host counter: 2/)).toBeVisible();
-  }
+    // Badge transitions from 'ssr' (server-rendered) to 'hydrated' once JS loads.
+    await expect(page.getByText("hydrated").first()).toBeVisible({ timeout: 10000 });
+  });
 });
