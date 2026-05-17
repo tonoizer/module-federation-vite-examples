@@ -67,6 +67,17 @@ test.beforeEach(async ({ page }, testInfo) => {
 test.afterEach(async ({ page }, testInfo) => {
   if (testInfo.status === testInfo.expectedStatus) return;
 
+  const screenshotPath = testInfo.outputPath("failure.png");
+  await page
+    .screenshot({ path: screenshotPath, fullPage: true })
+    .then(() =>
+      testInfo.attach("failure-screenshot", {
+        path: screenshotPath,
+        contentType: "image/png",
+      })
+    )
+    .catch((error) => console.log(`Failed to save failure screenshot: ${error}`));
+
   const diagnostics = diagnosticsByPage.get(page);
   if (!diagnostics) return;
 
