@@ -34,8 +34,7 @@ export default function Counter() {
         Rendered by remote before client hydration.
       </p>
       <p style={{ margin: "10px 0 16px", fontSize: 12, color: "#c9cdd3" }}>
-        Theme from host context: <strong>{theme.label}</strong> (
-        {theme.primaryColour})
+        Theme from host context: <strong>{theme.label}</strong> ({theme.primaryColour})
       </p>
       {hydrated && (
         <button
@@ -62,9 +61,7 @@ export default function Counter() {
             ? "linear-gradient(135deg, rgba(156, 224, 170, 0.2), rgba(246, 179, 82, 0.12))"
             : "rgba(255, 255, 255, 0.08)",
           borderRadius: 999,
-          boxShadow: hydrated
-            ? "inset 0 0 0 1px rgba(156, 224, 170, 0.18)"
-            : "none",
+          boxShadow: hydrated ? "inset 0 0 0 1px rgba(156, 224, 170, 0.18)" : "none",
           color: hydrated ? "#9ce0aa" : "#aeb4bc",
           display: "inline-flex",
           fontSize: 12,

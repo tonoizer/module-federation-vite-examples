@@ -1,9 +1,4 @@
-import {
-    createRootRoute,
-    HeadContent,
-    Outlet,
-    Scripts,
-} from "@tanstack/react-router";
+import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import type { Theme } from "tanstack-shared";
 import { ThemeContext } from "tanstack-shared";
 
