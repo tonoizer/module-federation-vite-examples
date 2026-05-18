@@ -1,5 +1,5 @@
 import { federation } from "@module-federation/vite";
-import { cpSync, existsSync, readFileSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 // In dev, Nuxt serves Vite assets under /_nuxt/ base.
@@ -11,7 +11,6 @@ const remoteBase = isDev ? "/_nuxt" : "";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  ssr: false,
   modules: ["@pinia/nuxt"],
 
   experimental: {
@@ -25,14 +24,19 @@ export default defineNuxtConfig({
     // We also write a copy under _nuxt/ (with adjusted imports) for Nuxt's
     // modulepreload hints which reference /_nuxt/remoteEntry.js.
     "nitro:build:public-assets"(nitro) {
-      const src = resolve(nitro.options.buildDir, "dist/client/remoteEntry.js");
       const publicDir = nitro.options.output.publicDir;
-      if (!existsSync(src)) return;
-      // Root copy (used by dynamic imports with relative paths)
-      cpSync(src, resolve(publicDir, "remoteEntry.js"));
-      // _nuxt/ copy (for Nuxt's modulepreload hints) — adjust relative imports
-      const code = readFileSync(src, "utf-8").replace(/"\.\/_nuxt\//g, '"./');
-      writeFileSync(resolve(publicDir, "_nuxt/remoteEntry.js"), code);
+      mkdirSync(resolve(publicDir, "_nuxt"), { recursive: true });
+
+      for (const file of ["remoteEntry.js", "remoteEntry.ssr.js", "mf-manifest.json"]) {
+        const src = resolve(nitro.options.buildDir, `dist/client/${file}`);
+        if (!existsSync(src)) continue;
+        cpSync(src, resolve(publicDir, file));
+
+        if (file.endsWith(".js")) {
+          const code = readFileSync(src, "utf-8").replace(/"\.\/_nuxt\//g, '"./');
+          writeFileSync(resolve(publicDir, `_nuxt/${file}`), code);
+        }
+      }
     },
   },
 
@@ -41,6 +45,7 @@ export default defineNuxtConfig({
       federation({
         dts: false,
         name: "host",
+        hostInitInjectLocation: "entry",
         remotes: {
           remote: {
             type: "module",
@@ -52,6 +57,11 @@ export default defineNuxtConfig({
         },
         exposes: {},
         filename: "remoteEntry.js",
+        manifest: true,
+        shared: {
+          vue: { singleton: true, requiredVersion: "3.5.29" },
+          "vue-router": { singleton: true, requiredVersion: "4.6.4" },
+        },
       }) as any,
     ],
   },

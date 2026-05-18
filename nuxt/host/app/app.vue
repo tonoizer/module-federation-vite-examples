@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from "vue";
 import Counter from "./components/counter.vue";
-const RemoteMFE = defineAsyncComponent(() =>
-  import("remote/remote-app").then((m) => m.default || m)
-);
+const RemoteMFE = defineAsyncComponent({
+  loader: () =>
+    (import.meta.server ? import("../../remote/app/app.vue") : import("remote/remote-app")).then(
+      (m) => m.default || m
+    ),
+  suspensible: true,
+});
 </script>
 
 <template>
@@ -32,9 +36,7 @@ const RemoteMFE = defineAsyncComponent(() =>
       <Counter />
     </div>
   </div>
-  <ClientOnly>
-    <RemoteMFE v-if="!!RemoteMFE" />
-  </ClientOnly>
+  <RemoteMFE />
 </template>
 
 <style scoped>
