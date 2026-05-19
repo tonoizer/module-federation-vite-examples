@@ -188,7 +188,7 @@ function IndexPage() {
               />
             </svg>
           </div>
-          <div style={{ marginTop: 10, fontSize: 21 }}>I'm the host app</div>
+          <div style={{ margin: "25px 0", fontSize: 21 }}>I'm the host app</div>
           <HostCounter />
         </div>
       </div>
