@@ -41,7 +41,7 @@ runs:
 
     - name: Upload dev test artifacts
       if: failure() && steps.test-dev.outcome == 'failure'
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
       with:
         name: playwright-${{ inputs.framework }}-vite-${{ steps.report-labels.outputs.vite-label }}-dev
         path: artifacts/playwright/${{ inputs.framework }}/vite-${{ steps.report-labels.outputs.vite-label }}/dev
@@ -64,7 +64,7 @@ runs:
 
     - name: Upload preview test artifacts
       if: failure() && steps.test-preview.outcome == 'failure'
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
       with:
         name: playwright-${{ inputs.framework }}-vite-${{ steps.report-labels.outputs.vite-label }}-preview
         path: artifacts/playwright/${{ inputs.framework }}/vite-${{ steps.report-labels.outputs.vite-label }}/preview
