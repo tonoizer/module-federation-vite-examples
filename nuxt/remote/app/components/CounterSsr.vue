@@ -26,7 +26,6 @@ onMounted(() => {
       Rendered by remote before client hydration.
     </p>
     <button
-      v-if="hydrated"
       style="
         background-color: rgb(246, 179, 82);
         border: 0 solid #e2e8f0;

@@ -1,0 +1,18 @@
+{
+  "name": "vue-ssr",
+  "private": true,
+  "description": "Plain Vite SSR + Module Federation with Vue 3 (host + 3 remotes)",
+  "scripts": {
+    "dev": "pnpm --filter vue-ssr-* --parallel dev",
+    "dev:remote-b": "pnpm --filter vue-ssr-remote-b dev",
+    "dev:remote-c": "pnpm --filter vue-ssr-remote-c dev",
+    "dev:remote-a": "pnpm --filter vue-ssr-remote-a dev",
+    "dev:host": "pnpm --filter vue-ssr-host dev",
+    "build": "pnpm --filter vue-ssr-remote-b build && pnpm --filter vue-ssr-remote-c build && pnpm --filter vue-ssr-remote-a build && pnpm --filter vue-ssr-host build",
+    "preview": "pnpm --filter vue-ssr-* --parallel preview",
+    "preview:remote-b": "pnpm --filter vue-ssr-remote-b preview",
+    "preview:remote-c": "pnpm --filter vue-ssr-remote-c preview",
+    "preview:remote-a": "pnpm --filter vue-ssr-remote-a preview",
+    "preview:host": "pnpm --filter vue-ssr-host preview"
+  }
+}

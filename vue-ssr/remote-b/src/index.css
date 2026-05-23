@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.remote-page {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #153529;
+  background: #f2faf6;
+  min-height: 100vh;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.remote-copy {
+  color: #3d524a;
+}
+
+.remote-page code {
+  background: rgba(16, 122, 87, 0.12);
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+}
+
+.pill {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: #107a57;
+  color: #fff;
+  font-size: 0.85rem;
+}

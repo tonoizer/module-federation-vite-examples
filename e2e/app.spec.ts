@@ -1,16 +1,29 @@
 import { expect, test } from "@playwright/test";
 
-const isSharedState = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("vue");
+// CSR vue + nuxt share Pinia; vue-ssr uses independent local counters (like react-ssr).
+const isSharedState =
+  process.env.PLAYWRIGHT_TEST_COMMAND?.includes("nuxt") ||
+  (process.env.PLAYWRIGHT_TEST_COMMAND?.includes("vue") &&
+    !process.env.PLAYWRIGHT_TEST_COMMAND?.includes("vue-ssr"));
 const isNuxt = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("nuxt");
 const isTanStack = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("tanstack");
 
 const btn = (page: any, name: RegExp) => page.getByRole("button", { name }).first();
+
+async function waitForNuxtClient(page: any) {
+  await page.waitForFunction(
+    () =>
+      !!(document.querySelector("#__nuxt") as HTMLElement & { __vue_app__?: unknown })?.__vue_app__,
+    { timeout: 15_000 }
+  );
+}
 
 test.describe("standard examples", () => {
   test.skip(isTanStack || isNuxt, "SSR examples have specific coverage");
 
   test("host app and remote component should load and counters should work", async ({ page }) => {
     await page.goto("/");
+    await page.waitForLoadState("networkidle");
 
     // Verify the Host and Remote apps loaded
     await expect(page.getByText("I'm the host app")).toBeVisible({
@@ -82,9 +95,12 @@ test.describe("nuxt", () => {
   });
 
   test("all counters should be interactive after hydration", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "load" });
+    await waitForNuxtClient(page);
 
-    await expect(page.getByText(/Hydrated/i).first()).toBeVisible({ timeout: 10000 });
+    await expect(page.getByRole("button", { name: /Remote counter: 0/ })).toHaveCount(2, {
+      timeout: 10000,
+    });
 
     await btn(page, /Host counter: 0/).click();
     await expect(btn(page, /Host counter: 1/)).toBeVisible();
@@ -99,9 +115,14 @@ test.describe("nuxt", () => {
   });
 
   test("hydration badges should update after client-side hydration", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "load" });
+    await waitForNuxtClient(page);
 
-    await expect(page.getByText(/Hydrated/i)).toHaveCount(2, { timeout: 10000 });
+    // Widget + CounterSsr remotes each show a Hydrated badge after onMounted.
+    await expect(page.locator(".remote-card, .remote-ssr-card").getByText(/Hydrated/i)).toHaveCount(
+      2,
+      { timeout: 15000 }
+    );
   });
 });
 

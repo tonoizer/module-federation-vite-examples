@@ -40,7 +40,6 @@ onMounted(() => {
     </div>
     <div style="margin-top: 10px; font-size: 21px">I'm the remote app</div>
     <button
-      v-if="hydrated"
       style="
         background: #f6b352;
         border: 0;
@@ -56,6 +55,36 @@ onMounted(() => {
     >
       Remote counter: {{ count }}
     </button>
+    <span
+      :style="{
+        alignItems: 'center',
+        background: hydrated
+          ? 'linear-gradient(135deg, rgba(156, 224, 170, 0.2), rgba(246, 179, 82, 0.12))'
+          : 'rgba(255, 255, 255, 0.08)',
+        borderRadius: '999px',
+        boxShadow: hydrated ? 'inset 0 0 0 1px rgba(156, 224, 170, 0.18)' : 'none',
+        color: hydrated ? '#9ce0aa' : '#aeb4bc',
+        display: 'inline-flex',
+        fontSize: '12px',
+        fontWeight: 700,
+        gap: '7px',
+        lineHeight: 1,
+        marginTop: '12px',
+        padding: '7px 11px',
+      }"
+    >
+      <span
+        :style="{
+          background: hydrated ? '#9ce0aa' : '#aeb4bc',
+          borderRadius: '50%',
+          boxShadow: hydrated ? '0 0 8px rgba(156, 224, 170, 0.75)' : 'none',
+          display: 'inline-block',
+          height: '7px',
+          width: '7px',
+        }"
+      />
+      {{ hydrated ? "Hydrated" : "SSR" }}
+    </span>
   </div>
 </template>
 

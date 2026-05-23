@@ -1,0 +1,60 @@
+:root {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #142235;
+  background: #f4f7fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+code {
+  background: rgba(11, 107, 203, 0.1);
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+}
+
+.shell {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.lede {
+  color: #3d4b5f;
+}
+
+.host-block {
+  margin-top: 1.75rem;
+}
+
+.hydration-demo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  border: 1px solid rgba(20, 34, 53, 0.1);
+}
+
+.demo-button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: #0b6bcb;
+  cursor: pointer;
+}
+
+.demo-button:hover {
+  background: #0958a8;
+}

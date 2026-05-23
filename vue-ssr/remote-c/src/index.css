@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.remote-page {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #241a0f;
+  background: #fff8f0;
+  min-height: 100vh;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.remote-copy {
+  color: #5c4d3d;
+}
+
+.remote-page code,
+.remote-c-aside code {
+  background: rgba(191, 87, 0, 0.12);
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+}
+
+.remote-c-aside {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(191, 87, 0, 0.45);
+  background: #fff;
+}
+
+.remote-c-aside h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.remote-c-aside p {
+  margin: 0;
+  color: #5c4d3d;
+}

@@ -11,7 +11,7 @@ onMounted(() => {
   <div class="host-ssr-card">
     <div class="title">Host SSR component</div>
     <p class="description">Rendered by host before client hydration.</p>
-    <button v-if="hydrated" class="counter" @click="count++">SSR counter: {{ count }}</button>
+    <button class="counter" @click="count++">SSR counter: {{ count }}</button>
     <span class="badge" :class="{ hydrated }">
       <span class="dot" />
       {{ hydrated ? "Hydrated" : "SSR" }}

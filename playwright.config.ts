@@ -1,8 +1,16 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const webServerUrl = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("tanstack")
-  ? "http://localhost:4174"
-  : "http://localhost:4173";
+const cmd = process.env.PLAYWRIGHT_TEST_COMMAND;
+const baseURL =
+  cmd?.includes("vue-ssr") || cmd?.includes("react-ssr")
+    ? "http://localhost:5173"
+    : "http://localhost:4173";
+// Wait for remote (4174) when the host needs remoteEntry before the page is usable.
+const webServerUrl =
+  cmd?.includes("tanstack") || cmd?.includes("svelte") || cmd?.includes("nuxt")
+    ? "http://localhost:4174"
+    : baseURL;
+
 const reportDir = process.env.PLAYWRIGHT_REPORT_DIR || "playwright-report";
 const testResultsDir = process.env.PLAYWRIGHT_TEST_RESULTS_DIR || "test-results";
 
@@ -15,7 +23,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [["html", { outputFolder: reportDir }]],
   use: {
-    baseURL: "http://localhost:4173",
+    baseURL,
     trace: "on-first-retry",
   },
   projects: [
@@ -25,8 +33,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: process.env.PLAYWRIGHT_TEST_COMMAND || "pnpm react:preview",
+    command: cmd || "pnpm react:preview",
     url: webServerUrl,
     reuseExistingServer: !process.env.CI,
+    timeout: 90_000,
   },
 });

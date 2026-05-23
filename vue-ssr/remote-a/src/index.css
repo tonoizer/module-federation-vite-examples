@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Standalone remote page chrome — avoids overriding the host shell's :root when federated. */
+.remote-page {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #1f1638;
+  background: #f7f4ff;
+  min-height: 100vh;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.remote-copy {
+  color: #3b3f59;
+}
+
+.remote-page code,
+.federated-block code {
+  background: rgba(124, 58, 237, 0.1);
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+}
+
+.federated-block {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  background: #fff;
+}
+
+.remote-a {
+  border-color: rgba(124, 58, 237, 0.45);
+}
+
+.muted {
+  color: #6b6680;
+}
+
+.demo-button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: #7c3aed;
+  cursor: pointer;
+}
+
+.demo-button:hover {
+  background: #6d28d9;
+}

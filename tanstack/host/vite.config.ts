@@ -22,6 +22,8 @@ export default defineConfig({
     federation({
       dts: false,
       name: "host",
+      filename: "remoteEntry.js",
+      manifest: true,
       hostInitInjectLocation: "entry",
       remotes: {
         remote: {
@@ -49,6 +51,9 @@ export default defineConfig({
     target: "chrome89",
   },
   server: {
+    port: 4173,
+  },
+  preview: {
     port: 4173,
   },
 });

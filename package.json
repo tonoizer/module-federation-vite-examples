@@ -52,7 +52,14 @@
     "vinext:preview": "pnpm -C vinext preview",
     "vue:build": "pnpm -C vue build",
     "vue:dev": "pnpm -C vue dev",
-    "vue:preview": "pnpm -C vue preview"
+    "vue:preview": "pnpm -C vue preview",
+    "react-ssr:build": "pnpm -C react-ssr build",
+    "react-ssr:dev": "pnpm -C react-ssr dev",
+    "react-ssr:preview": "pnpm -C react-ssr preview",
+    "vue-ssr:build": "pnpm -C vue-ssr build",
+    "vue-ssr:dev": "pnpm -C vue-ssr dev",
+    "vue-ssr:preview": "pnpm -C vue-ssr preview",
+    "verify:ssr": "node scripts/verify-ssr-full.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",

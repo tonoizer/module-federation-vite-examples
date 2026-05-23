@@ -6,6 +6,10 @@ import { resolve } from "node:path";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+  devServer: {
+    host: "localhost",
+    port: 4174,
+  },
   modules: ["@pinia/nuxt"],
 
   experimental: {

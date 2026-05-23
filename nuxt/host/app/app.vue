@@ -3,15 +3,8 @@ import { defineAsyncComponent } from "vue";
 import HostCard from "./components/HostCard.vue";
 import HostSsrComponent from "./components/HostSsrComponent.vue";
 
-const RemoteWidget = defineAsyncComponent({
-  loader: () => import("remote/Widget").then((m) => m.default || m),
-  suspensible: true,
-});
-
-const RemoteCounter = defineAsyncComponent({
-  loader: () => import("remote/Counter").then((m) => m.default || m),
-  suspensible: true,
-});
+const RemoteWidget = defineAsyncComponent(() => import("remote/Widget"));
+const RemoteCounter = defineAsyncComponent(() => import("remote/Counter"));
 </script>
 
 <template>
