@@ -1,5 +1,5 @@
 {
-  "name": "vue-remote",
+  "name": "vue-spa-remote",
   "private": true,
   "scripts": {
     "dev": "vite --port 4174",

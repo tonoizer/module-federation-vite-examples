@@ -1,5 +1,5 @@
 {
-  "name": "vue-host",
+  "name": "vue-spa-host",
   "private": true,
   "scripts": {
     "dev": "vite --port 4173",

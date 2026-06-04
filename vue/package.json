@@ -2,8 +2,8 @@
   "name": "vue",
   "description": "Module Federation Vite + Vue3 is now possible",
   "scripts": {
-    "dev": "pnpm --filter vue-* dev",
-    "build": "pnpm --filter vue-* build",
-    "preview": "pnpm --filter vue-* preview"
+    "dev": "pnpm --filter vue-spa-* dev",
+    "build": "pnpm --filter vue-spa-* build",
+    "preview": "pnpm --filter vue-spa-* preview"
   }
 }
