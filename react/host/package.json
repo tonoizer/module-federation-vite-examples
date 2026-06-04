@@ -1,5 +1,5 @@
 {
-  "name": "react-host",
+  "name": "react-spa-host",
   "type": "module",
   "scripts": {
     "dev": "vite --port 4173",

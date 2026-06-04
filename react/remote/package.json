@@ -1,5 +1,5 @@
 {
-  "name": "react-remote",
+  "name": "react-spa-remote",
   "type": "module",
   "scripts": {
     "dev": "vite --port 4174",

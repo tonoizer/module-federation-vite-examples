@@ -2,8 +2,8 @@
   "name": "react",
   "description": "Module Federation Vite + React is now possible",
   "scripts": {
-    "dev": "pnpm --filter @mf-vite-example/shared-ui build && pnpm --filter react-* dev",
-    "build": "pnpm --filter @mf-vite-example/shared-ui build && pnpm --filter react-* build",
-    "preview": "pnpm --filter react-* preview"
+    "dev": "pnpm --filter @mf-vite-example/shared-ui build && pnpm --filter react-spa-* dev",
+    "build": "pnpm --filter @mf-vite-example/shared-ui build && pnpm --filter react-spa-* build",
+    "preview": "pnpm --filter react-spa-* preview"
   }
 }
