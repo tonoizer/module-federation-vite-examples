@@ -12,7 +12,7 @@ export default createModuleFederationConfig({
       type: "module",
       name: "remote_b",
       entryGlobalName: "remote_b",
-      entry: "http://localhost:4174/remoteEntry.js",
+      entry: "http://localhost:4174/mf-manifest.json",
       shareScope: "default",
     },
   },

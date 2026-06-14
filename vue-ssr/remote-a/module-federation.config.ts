@@ -6,12 +6,13 @@ export default createModuleFederationConfig({
   publicPath: "http://localhost:4173/",
   manifest: true,
   dts: false,
+  dev: { remoteHmr: true },
   remotes: {
     remote_b: {
       type: "module",
       name: "remote_b",
       entryGlobalName: "remote_b",
-      entry: "http://localhost:4174/remoteEntry.js",
+      entry: "http://localhost:4174/mf-manifest.json",
       shareScope: "default",
     },
   },

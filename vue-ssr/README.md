@@ -2,6 +2,8 @@
 
 This mirrors the React SSR demo with Vue 3 components. It follows the plain Vite SSR pattern: custom `server.js`, Vite middleware plus `ssrLoadModule` in dev, and separate client/server builds in production.
 
+Host and nested remotes use **`mf-manifest.json` entries** (remotes set `manifest: true`), aligned with react-ssr and the [Module Federation Chrome DevTools](https://module-federation.io/guide/debug/chrome-devtool). You can still use `remoteEntry.js` entries interchangeably per remote.
+
 | App      | Port | Role                                                               |
 | -------- | ---: | ------------------------------------------------------------------ |
 | host     | 5173 | Host shell loading `remote_a/remote-app` and `remote_c/remote-app` |

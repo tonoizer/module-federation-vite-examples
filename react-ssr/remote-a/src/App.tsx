@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-import RemoteB from "remote_b/remote-app";
+import { lazy, Suspense, useEffect } from "react";
 import RemoteCard from "./components/RemoteCard";
+
+const RemoteB = lazy(() => import("remote_b/remote-app"));
 
 export default function RemoteApp() {
   useEffect(() => {
@@ -10,7 +11,9 @@ export default function RemoteApp() {
   return (
     <RemoteCard title="I'm the remote app">
       <div style={{ marginTop: 16, display: "flex", justifyContent: "center" }}>
-        <RemoteB />
+        <Suspense fallback={null}>
+          <RemoteB />
+        </Suspense>
       </div>
     </RemoteCard>
   );

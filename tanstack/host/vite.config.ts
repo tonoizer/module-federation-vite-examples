@@ -29,7 +29,7 @@ export default defineConfig({
         remote: {
           type: "module",
           name: "remote",
-          entry: "http://localhost:4174/remoteEntry.js",
+          entry: "http://localhost:4174/mf-manifest.json",
         },
       },
       shared: {

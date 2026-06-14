@@ -39,11 +39,8 @@ if (!isProduction) {
   const { default: compression } = await import("compression");
   const { default: sirv } = await import("sirv");
   app.use(compression());
-  if (existsSync("./dist/server/__mf_ssr__")) {
-    app.use("/__mf_ssr__", sirv("./dist/server/__mf_ssr__", { extensions: [] }));
-  }
   if (existsSync("./dist/server")) {
-    app.use("/__mf_server__", sirv("./dist/server", { extensions: [] }));
+    app.use("/__mf_ssr__", sirv("./dist/server", { extensions: [] }));
   }
   app.use(sirv("./dist/client", { extensions: [] }));
   templateHtml = await fs.readFile("./dist/client/index.html", "utf-8");

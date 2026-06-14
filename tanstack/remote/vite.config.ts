@@ -8,6 +8,7 @@ export default defineConfig({
       dts: false,
       name: "remote",
       filename: "remoteEntry.js",
+      manifest: true,
       exposes: {
         "./Widget": "./src/components/Widget",
         "./Counter": "./src/components/Counter",

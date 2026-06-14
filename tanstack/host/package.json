@@ -18,7 +18,7 @@
     "vinxi": "0.5.3"
   },
   "devDependencies": {
-    "@module-federation/vite": "catalog:",
+    "@module-federation/vite": "file:../../../vite",
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
     "@vitejs/plugin-react": "4.4.1",

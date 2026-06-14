@@ -4,7 +4,6 @@ import http from "node:http";
 import express from "express";
 
 const port = Number(process.env.PORT) || 5173;
-const cors = process.env.SSR_CORS === "1";
 const isProduction = process.env.NODE_ENV === "production";
 const entryServer =
   process.env.SSR_ENTRY_SERVER ??
@@ -13,25 +12,24 @@ const entryServer =
 const app = express();
 const httpServer = http.createServer(app);
 
-if (cors) {
-  app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "*");
-    if (req.method === "OPTIONS") {
-      res.status(204).end();
-      return;
-    }
-    next();
-  });
-}
+// MF remotes are loaded cross-origin by the host during client hydration.
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  if (req.method === "OPTIONS") {
+    res.status(204).end();
+    return;
+  }
+  next();
+});
 
 let vite;
 let templateHtml = "";
 if (!isProduction) {
   const { createServer } = await import("vite");
   vite = await createServer({
-    server: { middlewareMode: true, hmr: { server: httpServer } },
+    server: { middlewareMode: true, cors: true, hmr: { server: httpServer } },
     appType: "custom",
   });
   app.use(vite.middlewares);
@@ -39,13 +37,18 @@ if (!isProduction) {
   const { default: compression } = await import("compression");
   const { default: sirv } = await import("sirv");
   app.use(compression());
-  if (existsSync("./dist/server/__mf_ssr__")) {
-    app.use("/__mf_ssr__", sirv("./dist/server/__mf_ssr__", { extensions: [] }));
-  }
+  const sirvOpts = {
+    extensions: [],
+    setHeaders(res) {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS");
+      res.setHeader("Access-Control-Allow-Headers", "*");
+    },
+  };
   if (existsSync("./dist/server")) {
-    app.use("/__mf_server__", sirv("./dist/server", { extensions: [] }));
+    app.use("/__mf_ssr__", sirv("./dist/server", sirvOpts));
   }
-  app.use(sirv("./dist/client", { extensions: [] }));
+  app.use(sirv("./dist/client", sirvOpts));
   templateHtml = await fs.readFile("./dist/client/index.html", "utf-8");
 }
 
