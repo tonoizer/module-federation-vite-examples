@@ -2,6 +2,8 @@
 
 Custom SSR with Vite 8's Environment API: each app has a `server.js`, uses `createServerModuleRunner` in dev, and a single `vite build` that produces both client and server outputs.
 
+Host and nested remotes use **`mf-manifest.json` entries** (remotes set `manifest: true`), which is the recommended way to resolve SSR remote chunks on the server. You can still use `remoteEntry.js` entries interchangeably per remote.
+
 | App      | Port | Role                                                               |
 | -------- | ---: | ------------------------------------------------------------------ |
 | host     | 5173 | Host shell loading `remote_a/remote-app` and `remote_c/remote-app` |

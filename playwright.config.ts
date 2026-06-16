@@ -5,7 +5,7 @@ const baseURL =
   cmd?.includes("vue-ssr") || cmd?.includes("react-ssr")
     ? "http://localhost:5173"
     : "http://localhost:4173";
-// Wait for remote (4174) when the host needs remoteEntry before the page is usable.
+// Wait for remotes (mf-manifest or remoteEntry) before the host page is usable.
 const webServerUrl =
   cmd?.includes("tanstack") || cmd?.includes("svelte") || cmd?.includes("nuxt")
     ? "http://localhost:4174"

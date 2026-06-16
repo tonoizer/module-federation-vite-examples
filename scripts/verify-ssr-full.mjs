@@ -23,9 +23,9 @@ function viteSsrStack(name) {
     build: ["pnpm", `${name}:build`],
     hostUrl: "http://localhost:5173/",
     remoteUrls: [
-      "http://localhost:4173/remoteEntry.js",
-      "http://localhost:4174/remoteEntry.js",
-      "http://localhost:4175/remoteEntry.js",
+      "http://localhost:4173/mf-manifest.json",
+      "http://localhost:4174/mf-manifest.json",
+      "http://localhost:4175/mf-manifest.json",
     ],
     servers: (m) => [
       { label: "remote-a", cmd: mode("remote-a")(m) },
@@ -113,7 +113,10 @@ async function waitForUrls(urls, timeoutMs = 120_000) {
     for (const url of [...pending]) {
       try {
         const res = await fetch(url, { redirect: "follow" });
-        if (res.ok || (url.includes("remoteEntry") && res.status < 500)) {
+        if (
+          res.ok ||
+          ((url.includes("remoteEntry") || url.includes("mf-manifest")) && res.status < 500)
+        ) {
           pending.delete(url);
         }
       } catch {
