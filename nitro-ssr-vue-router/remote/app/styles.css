@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+.examples {
+  display: flex;
+  flex-wrap: wrap;
+}

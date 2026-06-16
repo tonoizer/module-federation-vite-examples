@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
+.output
 dist-ssr
 *.local
 
@@ -38,3 +39,13 @@ tanstack/**/.tanstack
 tanstack/**/.mf
 tanstack/**/dist
 tanstack/**/node_modules/.ssr-cache
+nitro-ssr-react/**/.output
+nitro-ssr-react/**/.mf
+nitro-ssr-react/**/dist
+nitro-ssr-react/remote/public/*
+!nitro-ssr-react/remote/public/.gitkeep
+nitro-ssr-vue-router/**/.output
+nitro-ssr-vue-router/**/.mf
+nitro-ssr-vue-router/**/dist
+nitro-ssr-vue-router/remote/public/*
+!nitro-ssr-vue-router/remote/public/.gitkeep

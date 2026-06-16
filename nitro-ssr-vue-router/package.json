@@ -1,0 +1,9 @@
+{
+  "name": "nitro-ssr-vue-router",
+  "description": "Module Federation Vite + Nitro + Vue SSR",
+  "scripts": {
+    "dev": "pnpm --filter nitro-vue-shared build && pnpm --filter nitro-vue-* dev",
+    "build": "pnpm --filter nitro-vue-shared build && pnpm --filter nitro-vue-* build",
+    "preview": "pnpm --filter nitro-vue-* preview"
+  }
+}

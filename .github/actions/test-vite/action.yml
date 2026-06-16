@@ -31,7 +31,7 @@ runs:
 
     - name: Test dev
       id: test-dev
-      if: inputs.framework != 'nuxt' && inputs.framework != 'tanstack'
+      if: inputs.framework != 'nuxt' && inputs.framework != 'tanstack' && inputs.framework != 'nitro-react' && inputs.framework != 'nitro-vue'
       shell: bash
       run: pnpm exec playwright test
       env:

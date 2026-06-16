@@ -1,0 +1,17 @@
+{
+  "name": "nitro-vue-shared",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/theme.js",
+  "module": "./dist/theme.js",
+  "types": "./theme.ts",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  }
+}

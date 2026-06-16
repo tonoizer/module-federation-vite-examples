@@ -1,13 +1,17 @@
 import { expect, test } from "@playwright/test";
 
-const isSharedState = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("vue");
-const isNuxt = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("nuxt");
-const isTanStack = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("tanstack");
+const command = process.env.PLAYWRIGHT_TEST_COMMAND ?? "";
+const isSharedState = command.includes("vue") && !command.includes("nitro-vue");
+const isNuxt = command.includes("nuxt");
+const isTanStack = command.includes("tanstack");
+const isNitroReact = command.includes("nitro-react");
+const isNitroVue = command.includes("nitro-vue");
+const isNitroSsr = isNitroReact || isNitroVue;
 
 const btn = (page: any, name: RegExp) => page.getByRole("button", { name }).first();
 
 test.describe("standard examples", () => {
-  test.skip(isTanStack || isNuxt, "SSR examples have specific coverage");
+  test.skip(isTanStack || isNuxt || isNitroSsr, "SSR examples have specific coverage");
 
   test("host app and remote component should load and counters should work", async ({ page }) => {
     await page.goto("/");
@@ -152,5 +156,49 @@ test.describe("tanstack", () => {
 
     // Badge transitions from 'ssr' (server-rendered) to 'hydrated' once JS loads.
     await expect(page.getByText("hydrated").first()).toBeVisible({ timeout: 10000 });
+  });
+});
+
+test.describe("nitro ssr", () => {
+  test.skip(!isNitroSsr, "nitro ssr only");
+
+  test("host app and remote components should be server-rendered", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(page.getByText("I'm the host app")).toBeVisible({ timeout: 10000 });
+    await expect(page.getByText("Host SSR component")).toBeVisible({ timeout: 10000 });
+    await expect(page.getByText("I'm the remote app").first()).toBeVisible({ timeout: 10000 });
+    await expect(page.getByText("Remote SSR component")).toBeVisible({ timeout: 10000 });
+  });
+
+  test("remote counter should be interactive after hydration", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(page.locator("span", { hasText: /Hydrated/i }).first()).toBeVisible({
+      timeout: 10000,
+    });
+
+    await page
+      .getByRole("button", { name: /Remote counter: 0/ })
+      .first()
+      .click();
+    await expect(page.getByRole("button", { name: /Remote counter: 1/ }).first()).toBeVisible({
+      timeout: 10000,
+    });
+  });
+
+  test("shared context singleton should cross the MF boundary", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(page.getByText(/Theme from host context:/).first()).toBeVisible({
+      timeout: 10000,
+    });
+    await expect(page.getByText("host").first()).toBeVisible({ timeout: 10000 });
+  });
+
+  test("hydration badges should update after client-side hydration", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(page.getByText(/Hydrated/i)).toHaveCount(2, { timeout: 10000 });
   });
 });

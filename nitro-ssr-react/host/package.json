@@ -1,0 +1,26 @@
+{
+  "name": "nitro-react-host",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "PORT=4173 node .output/server/index.mjs",
+    "start": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "@module-federation/runtime": "2.4.0",
+    "nitro-react-shared": "workspace:*",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@module-federation/vite": "catalog:",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "nitro": "3.0.260610-beta",
+    "react-refresh": "^0.18.0",
+    "typescript": "5.9.3",
+    "vite": "latest"
+  }
+}

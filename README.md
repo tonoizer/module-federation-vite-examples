@@ -6,19 +6,21 @@ A collection of Module Federation examples built with Vite, used to test new [@m
 
 ## Examples
 
-| Example                | Host            | Remote            | Framework                   |
-| ---------------------- | --------------- | ----------------- | --------------------------- |
-| [Alpine](./alpine)     | `alpine-host`   | `alpine-remote`   | Alpine.js                   |
-| [Angular](./angular)   | `angular-host`  | `angular-remote`  | Angular                     |
-| [Lit](./lit)           | `lit-host`      | `lit-remote`      | Lit                         |
-| [Nuxt](./nuxt)         | `nuxt-host`     | `nuxt-remote`     | Nuxt 4                      |
-| [Preact](./preact)     | `preact-host`   | `preact-remote`   | Preact 10                   |
-| [React](./react)       | `react-host`    | `react-remote`    | React 19                    |
-| [Solid](./solid)       | `solid-host`    | `solid-remote`    | Solid                       |
-| [Svelte](./svelte)     | `svelte-host`   | `svelte-remote`   | Svelte 5                    |
-| [TanStack](./tanstack) | `tanstack-host` | `tanstack-remote` | TanStack Router + React 19  |
-| [Vinext](./vinext)     | `vinext-host`   | `vinext-remote`   | Vinext + Next 16 + React 19 |
-| [Vue](./vue)           | `vue-host`      | `vue-remote`      | Vue 3                       |
+| Example                             | Host               | Remote               | Framework                   |
+| ----------------------------------- | ------------------ | -------------------- | --------------------------- |
+| [Alpine](./alpine)                  | `alpine-host`      | `alpine-remote`      | Alpine.js                   |
+| [Angular](./angular)                | `angular-host`     | `angular-remote`     | Angular                     |
+| [Lit](./lit)                        | `lit-host`         | `lit-remote`         | Lit                         |
+| [Nitro React](./nitro-ssr-react)    | `nitro-react-host` | `nitro-react-remote` | Nitro v3 + React 19 SSR     |
+| [Nitro Vue](./nitro-ssr-vue-router) | `nitro-vue-host`   | `nitro-vue-remote`   | Nitro v3 + Vue 3 SSR        |
+| [Nuxt](./nuxt)                      | `nuxt-host`        | `nuxt-remote`        | Nuxt 4                      |
+| [Preact](./preact)                  | `preact-host`      | `preact-remote`      | Preact 10                   |
+| [React](./react)                    | `react-host`       | `react-remote`       | React 19                    |
+| [Solid](./solid)                    | `solid-host`       | `solid-remote`       | Solid                       |
+| [Svelte](./svelte)                  | `svelte-host`      | `svelte-remote`      | Svelte 5                    |
+| [TanStack](./tanstack)              | `tanstack-host`    | `tanstack-remote`    | TanStack Router + React 19  |
+| [Vinext](./vinext)                  | `vinext-host`      | `vinext-remote`      | Vinext + Next 16 + React 19 |
+| [Vue](./vue)                        | `vue-host`         | `vue-remote`         | Vue 3                       |
 
 Each example follows a **host/remote** architecture with shared dependencies.
 
@@ -44,6 +46,8 @@ pnpm vue:dev
 pnpm svelte:dev
 pnpm tanstack:dev
 pnpm nuxt:dev
+pnpm nitro-react:dev
+pnpm nitro-vue:dev
 pnpm vinext:dev
 ```
 

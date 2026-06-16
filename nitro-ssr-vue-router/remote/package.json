@@ -1,0 +1,24 @@
+{
+  "name": "nitro-vue-remote",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build && node ../scripts/fix-nitro-json.mjs",
+    "preview": "PORT=4174 node .output/server/index.mjs",
+    "start": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "@module-federation/runtime": "2.4.0",
+    "nitro-vue-shared": "workspace:*",
+    "unhead": "^2.1.12",
+    "vue": "^3.5.31",
+    "vue-router": "^5.0.4"
+  },
+  "devDependencies": {
+    "@module-federation/vite": "catalog:",
+    "@vitejs/plugin-vue": "^6.0.5",
+    "nitro": "3.0.260610-beta",
+    "vite": "latest",
+    "vite-plugin-devtools-json": "^1.0.0"
+  }
+}

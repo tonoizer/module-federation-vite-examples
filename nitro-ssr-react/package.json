@@ -1,0 +1,9 @@
+{
+  "name": "nitro-ssr-react",
+  "description": "Module Federation Vite + Nitro + React SSR",
+  "scripts": {
+    "dev": "pnpm --filter nitro-react-shared build && pnpm --filter nitro-react-* dev",
+    "build": "pnpm --filter nitro-react-shared build && pnpm --filter nitro-react-* build",
+    "preview": "pnpm --filter nitro-react-* preview"
+  }
+}
