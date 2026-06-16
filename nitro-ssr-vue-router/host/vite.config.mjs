@@ -1,8 +1,8 @@
 import { federation } from "@module-federation/vite";
 import vue from "@vitejs/plugin-vue";
+import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 import devtoolsJson from "vite-plugin-devtools-json";
-import { nitro } from "nitro/vite";
 
 export default defineConfig(() => ({
   nitro: {
@@ -26,7 +26,7 @@ export default defineConfig(() => ({
         remote: {
           type: "module",
           name: "remote",
-          entry: "http://localhost:4174/remoteEntry.js",
+          entry: "http://localhost:4174/mf-manifest.json",
         },
       },
       shared: {
