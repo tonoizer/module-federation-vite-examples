@@ -69,13 +69,17 @@ test.describe("standard examples", () => {
 test.describe("sveltekit", () => {
   test.skip(!isSvelteKit, "sveltekit only");
 
-  test("host page is server-rendered before the federated remote mounts", async ({ page }) => {
-    const response = await page.request.get("/");
-    const html = await response.text();
+  test("host shell remains visible with JavaScript disabled", async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false });
+    const page = await context.newPage();
 
-    expect(html).toContain("I'm the host app");
-    expect(html).toContain("Host counter: 0");
-    expect(html).not.toContain("I'm the remote app");
+    await page.goto("/");
+
+    await expect(page.getByText("I'm the host app")).toBeVisible();
+    await expect(btn(page, /Host counter: 0/)).toBeVisible();
+    await expect(page.getByText("I'm the remote app")).toHaveCount(0);
+
+    await context.close();
   });
 
   test("federated remote mounts and is interactive on the client", async ({ page }) => {
