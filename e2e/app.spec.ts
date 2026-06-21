@@ -3,11 +3,12 @@ import { expect, test } from "@playwright/test";
 const isSharedState = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("vue");
 const isNuxt = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("nuxt");
 const isTanStack = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("tanstack");
+const isSvelteKit = process.env.PLAYWRIGHT_TEST_COMMAND?.includes("svelte");
 
 const btn = (page: any, name: RegExp) => page.getByRole("button", { name }).first();
 
 test.describe("standard examples", () => {
-  test.skip(isTanStack || isNuxt, "SSR examples have specific coverage");
+  test.skip(isTanStack || isNuxt || isSvelteKit, "SSR examples have specific coverage");
 
   test("host app and remote component should load and counters should work", async ({ page }) => {
     await page.goto("/");
@@ -62,6 +63,36 @@ test.describe("standard examples", () => {
       // Host still at 2
       await expect(btn(page, /Host counter: 2/)).toBeVisible();
     }
+  });
+});
+
+test.describe("sveltekit", () => {
+  test.skip(!isSvelteKit, "sveltekit only");
+
+  test("host shell remains visible with JavaScript disabled", async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false });
+    const page = await context.newPage();
+
+    await page.goto("/");
+
+    await expect(page.getByText("I'm the host app")).toBeVisible();
+    await expect(btn(page, /Host counter: 0/)).toBeVisible();
+    await expect(page.getByText("I'm the remote app")).toHaveCount(0);
+
+    await context.close();
+  });
+
+  test("federated remote mounts and is interactive on the client", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(page.getByText("I'm the host app")).toBeVisible({ timeout: 10000 });
+    await expect(page.getByText("I'm the remote app")).toBeVisible({ timeout: 10000 });
+
+    await btn(page, /Host counter: 0/).click();
+    await expect(btn(page, /Host counter: 1/)).toBeVisible();
+
+    await btn(page, /Remote counter: 0/).click();
+    await expect(btn(page, /Remote counter: 1/)).toBeVisible();
   });
 });
 
